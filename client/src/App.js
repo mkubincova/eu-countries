@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Table from './Table';
 
 function App() {
   const [originalData, setOriginalData] = React.useState(null);
@@ -46,20 +46,7 @@ function App() {
       <h1>Countries of the EU</h1>
       <input type="text" id="name" onChange={handleChange} placeholder="Start typing the country name you are looking for..." />
 
-      <table>
-        <thead>
-          <tr>
-          <th>Flag</th>
-          <th>Name</th>
-          <th>Capital</th>
-          <th>Population</th>
-          <th>Currency</th>
-        </tr>
-        </thead>
-        <tbody>
-          {countryList}
-        </tbody>
-      </table>
+      <Table countryList={countryList} />
     </div>
   );
 }
