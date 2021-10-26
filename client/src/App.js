@@ -2,15 +2,17 @@ import React from 'react';
 import Table from './Table';
 
 function App() {
-  const [originalData, setOriginalData] = React.useState(null);
-  const [data, setData] = React.useState(null);
+  const [originalData, setOriginalData] = React.useState(null); //original array from request
+  const [data, setData] = React.useState(null); //(filtered) array displayed to user
 
+  //fetch data on first render
   React.useEffect(() => {
     fetch("/api")
       .then((res) => res.json())
       .then((data) => {setData(data); setOriginalData(data)});
   }, []);
 
+  //construct table rows from current data
   const countryList = (data) ? 
     ((data.length) ? (
         data.map(country => {
@@ -29,6 +31,7 @@ function App() {
       <tr><td>Loading...</td></tr>
   )
 
+  //filter data on input change
   const handleChange = function (e){
     const newData = (e.target.value === "") ? originalData : originalData.filter(country => {
       let query = e.target.value.toLowerCase()
